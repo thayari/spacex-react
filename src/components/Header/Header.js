@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import './header.css'
+import React from 'react';
+import './header.css';
 import logo from '../../logo.svg';
 
-export default class Header extends Component {
-  render() {
-    return (
-      <header className="header">
+export default function Header({rockets, changeRocket}) {
+  return (
+    <header className="header">
     <img
       src={logo}
       alt="Logo Space X"
@@ -13,18 +12,17 @@ export default class Header extends Component {
     />
     <nav className="main-nav nav">
       <ul className="list">
-        <li className="item">
-          <a href="/" className="item-link">Falcon 1</a>
-        </li>
-        <li className="item">
-          <a href="/" className="item-link">Falcon 9</a>
-        </li>
-        <li className="item">
-          <a href="/" className="item-link">Falcon Heavy</a>
-        </li>
-        <li className="item">
-          <a href="/" className="item-link">Updates</a>
-        </li>
+        {rockets.map((item, i) => (
+          <li key={i} className="item">
+            <a 
+              href="/" 
+              onClick={e => {
+                e.preventDefault(); 
+                changeRocket(item);
+              }} 
+              className="item-link">{item}</a>
+          </li>
+        ))}
       </ul>
     </nav>
     <nav className="secondary-nav">
@@ -38,6 +36,5 @@ export default class Header extends Component {
       </ul>
     </nav>
   </header>
-    )
-  }
+  )
 }

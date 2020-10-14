@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import './footer.css'
+import './footer.css';
 import logo from '../../logo.svg';
+import React from 'react'
 
-export default class Header extends Component {
-  render() {
-    return (
-      <footer className="footer">
+export default function Footer() {
+  return (
+    <footer className="footer">
         <img src={logo} alt="logo Space X" className="logo" />
         <nav className="footer-nav">
           <ul className="list">
@@ -19,8 +18,7 @@ export default class Header extends Component {
           For additional questions, contact
           <a className="footer-link" href="mailto:rideshare@spacex.com">rideshare@spacex.com</a>
         </p>
-
       </footer>
-    )
-  }
+  )
 }
+

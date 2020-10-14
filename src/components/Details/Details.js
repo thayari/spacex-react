@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react';
+import './details.css';
 
-export default class Details extends Component {
-  render() {
-    return (
-      <main className="details">
+export default function Details() {
+  return (
+    <main className="details">
         <div className="container">
           <div className="details-row">
             <div className="details-image">
@@ -19,6 +19,5 @@ export default class Details extends Component {
         </div>
         <a href="calendar.html" className="button button-back">go back</a>
       </main>
-    )
-  }
+  )
 }

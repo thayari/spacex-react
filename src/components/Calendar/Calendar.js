@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
-import './calendar.css'
-import Launches from '../Launches/Launches'
+import React from 'react';
+import './calendar.css';
+import Launches from '../Launches/Launches';
 
-export default class Calendar extends Component {
-  render() {
-    return (
-      <section className="calendar">
+export default function Calendar() {
+  return (
+    <section className="calendar">
         <div className="container">
           <ul className="calendar-list">
             <li className="calendar-item">
@@ -60,6 +59,5 @@ export default class Calendar extends Component {
           </ul>
         </div>
       </section>
-    )
-  }
+  )
 }
