@@ -1,38 +1,89 @@
-.App {
-  text-align: center;
+/* стартовые */
+html {
+	box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+	background: #010001;
+	min-width: 320px;
+	color: #fff;
+	font-size: 16px;
+	line-height: 1;
+	margin: 0;
+	font-family: "Roboto", sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+button, input {
+	font: inherit;
 }
 
-.App-link {
-  color: #61dafb;
+img {
+	max-width: 100%;
+	height: auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+a {
+	text-decoration: none;
+	color: inherit;
+	cursor: pointer;
 }
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+h1, h2, h3, p {
+	padding: 0;
+	margin: 0;
+}
+
+.container {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 0 25px;
+}
+
+
+.list {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	list-style: none;
+}
+
+.item-link {
+	color: #ffffff;
+	text-decoration: none;
+	margin-left: 10px;
+	margin-right: 10px;
+	font-size: 12px;
+	line-height: 14px;
+}
+
+/* header */
+
+
+/* main */
+
+/* features */
+
+
+
+/* footer */
+
+/* calendar */
+
+
+/* launches */
+
+/* details */
+
+/* end */
