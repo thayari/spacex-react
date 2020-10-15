@@ -16,9 +16,11 @@ export default class App extends Component {
     rocket: 'Falcon 1',
     rocketFeatures: null,
     rockets: [],
+    links: null,
   };
 
   componentDidMount() {
+    this.updateCompanyInfo();
     this.updateRocket();
   }
 
@@ -32,6 +34,13 @@ export default class App extends Component {
       .then(rocketFeatures => this.setState({ rocketFeatures }, () => console.log(this.state))) // вторым параметром в setState - callback-функция
   }
 
+  updateCompanyInfo() {
+    this.fetchData.getCompany()
+      .then(data => {
+        this.setState( { links: data.links } );
+      })
+  }
+
   changeRocket = (rocket) => {
     this.setState({
       rocket
@@ -40,13 +49,13 @@ export default class App extends Component {
 
   render() {
     return (
-      <>
+    <>
       <Header rockets={this.state.rockets} changeRocket={this.changeRocket} />
       <Main rocket={this.state.rocket} />
       <Features rocket={this.state.rocket} rocketFeatures={this.state.rocketFeatures} />
       {/* <Calendar />
       <Details /> */}
-      <Footer />
+      <Footer links={this.state.links} />
     </>
     )
   }
