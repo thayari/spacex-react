@@ -43,7 +43,7 @@ export default class App extends Component {
       <>
       <Header rockets={this.state.rockets} changeRocket={this.changeRocket} />
       <Main rocket={this.state.rocket} />
-      <Features rocketFeatures={this.state.rocketFeatures} />
+      <Features rocket={this.state.rocket} rocketFeatures={this.state.rocketFeatures} />
       {/* <Calendar />
       <Details /> */}
       <Footer />
