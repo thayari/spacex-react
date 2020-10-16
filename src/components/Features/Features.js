@@ -1,6 +1,7 @@
 import React from 'react';
 import './features.css';
 import RelaxWrapper from 'react-rellax-wrapper';
+import Main from '../Main/Main';
 
 const image = {
   'Falcon 1': 'falcon-1',
@@ -12,7 +13,8 @@ const image = {
 export default function Features({name, height, diameter, mass, payload_weights, description}) {
 
   return (
-    <div>
+    <>
+      <Main rocket={name} />
       <section className="features">
         <h2 className="features-title">
           {name} <br />Overview
@@ -61,6 +63,6 @@ export default function Features({name, height, diameter, mass, payload_weights,
           </article>
         </div>
       </section>
-    </div>
+    </>
   )
 }

@@ -14,7 +14,7 @@ export default function Launches(props) {
               {props.text}
             </a>
           </h2>
-          <Link to={{pathname:'/details/'+ props.id, id: props.id}} className="button launches-details">Подробнее</Link>
+          <Link to={{pathname:'/details/'+ props.id}} className="button launches-details">Подробнее</Link>
         </div>
       </article>
   )

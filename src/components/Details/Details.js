@@ -2,43 +2,41 @@ import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import Main from '../Main/Main';
 import FetchData from '../../service/FetchData';
+import useLaunches from '../useLaunches/useLaunches';
+import Youtube from 'react-youtube';
 import './details.css';
 
 const fetchData = new FetchData();
 
 export default function Details(props) {
   const id = props.match.params.id;
-
-  const [data, setData] = useState([]);
+  const {getLaunch} = useLaunches();
+  const [launch, setLaunch] = useState(null);
 
   useEffect(() => {
-    fetchData.getLaunches()
-      .then(data => data.find(item => item.id === id))
-      .then(data => {
-        setData(data);
-        console.log(data);
-      })
-  }, []);
+    setLaunch(getLaunch(id))
+  })
 
-  if (!data.links) return null;
+  if (!launch) return null;
 
-  const videoId = data.links.webcast.split('=')[1];
+  const videoId = launch.links.webcast.split('=')[1];
 
   return (
     <>
-      <Main />
+      <Main name={launch.name} />
       <main className="details">
         <div className="container">
           <div className="details-row">
             <div className="details-image">
-              <img src={data.links.patch.small} alt="" />
+              <img src={launch.links.patch.small} alt="" />
             </div>
-            {data.details && <div className="details-content">
-              <p className="details-description">{data.details}</p>
+            {launch.details && <div className="details-content">
+              <p className="details-description">{launch.details}</p>
             </div>}
           </div>
           <div>
-            <iframe className="details-youtube" width="560" height="315" src={'https://www.youtube.com/embed/' + videoId} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+            <Youtube className='details-youtube' videoId={videoId} />
+            {/* <iframe className="details-youtube" width="560" height="315" src={'https://www.youtube.com/embed/' + videoId} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
           </div>
         </div>
         <Link to='/calendar' className="button button-back">go back</Link>
