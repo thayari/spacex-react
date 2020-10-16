@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './launches.css';
 
 export default function Launches(props) {
@@ -13,7 +14,7 @@ export default function Launches(props) {
               {props.text}
             </a>
           </h2>
-          <a href="./details.html" className="button launches-details">Подробнее</a>
+          <Link to={{pathname:'/details/'+ props.id, id: props.id}} className="button launches-details">Подробнее</Link>
         </div>
       </article>
   )

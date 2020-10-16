@@ -9,42 +9,13 @@ const image = {
   'Starship': 'starship',
 }
 
-export default function Features({rocket, rocketFeatures}) {
-  const features = {
-    height: {
-      meters: '',
-      feet: '',
-    },
-    diameter: {
-      meters: '',
-      feet: '',
-    },
-    mass: {
-      kg: '',
-      lb: '',
-    },
-    payload_weights: {
-      kg: '',
-      lb: '',
-    },
-  }
-
-  if (rocketFeatures) {
-    features.height.meters = rocketFeatures.height.meters;
-    features.height.feet = rocketFeatures.height.feet;
-    features.diameter.meters = rocketFeatures.diameter.meters;
-    features.diameter.feet = rocketFeatures.diameter.feet;
-    features.mass.kg = rocketFeatures.mass.kg;
-    features.mass.lb = rocketFeatures.mass.lb;
-    features.payload_weights.kg = rocketFeatures.payload_weights[0].kg;
-    features.payload_weights.lb = rocketFeatures.payload_weights[0].lb;
-  }
+export default function Features({name, height, diameter, mass, payload_weights, description}) {
 
   return (
     <div>
       <section className="features">
         <h2 className="features-title">
-          {rocket} <br />Overview
+          {name} <br />Overview
           </h2>
         <div className="overview">
 
@@ -55,25 +26,28 @@ export default function Features({rocket, rocketFeatures}) {
             <thead>
               <tr>
                 <td className="table-column">HEIGHT</td>
-                <td className="table-column">{features.height.meters} m / {features.height.feet} ft</td>
+                <td className="table-column">{height.meters} m / {height.feet} ft</td>
               </tr>
               <tr>
                 <td className="table-column">DIAMETER</td>
-                <td className="table-column">{features.diameter.meters} m / {features.diameter.feet} ft</td>
+                <td className="table-column">{diameter.meters} m / {diameter.feet} ft</td>
               </tr>
               <tr>
                 <td className="table-column">MASS</td>
-                <td className="table-column">{features.mass.kg} kg / {features.mass.lb} lb</td>
+                <td className="table-column">{mass.kg} kg / {mass.lb} lb</td>
               </tr>
-              <tr>
-                <td className="table-column">PAYLOAD TO LEO</td>
-                <td className="table-column">{features.payload_weights.kg} kg / {features.payload_weights.lb} lb</td>
-              </tr>
+              {payload_weights.map((item) => (
+                <tr key={item.id}>
+                  <td className="table-column">PAYLOAD TO {item.id.toUpperCase()}</td>
+                  <td className="table-column">{item.kg} kg / {item.lb} lb</td>
+                </tr>
+              ))}
+
             </thead>
           </table>
           <RelaxWrapper speed={14}>
             <img
-              src={`${image.hasOwnProperty(rocket) ? '../../img/' + image[rocket] + '.png' : ''}`}
+              src={`${image.hasOwnProperty(name) ? '../../img/' + image[name] + '.png' : ''}`}
               alt="rocket"
               className="rocket"
             />
@@ -82,7 +56,7 @@ export default function Features({rocket, rocketFeatures}) {
           <article>
             <h3 className="features-subtitle">DESCRIPTION</h3>
             <p className="features-text">
-              {rocketFeatures ? rocketFeatures.description : '' }
+              {description}
             </p>
           </article>
         </div>

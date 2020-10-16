@@ -1,23 +1,48 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
+import Main from '../Main/Main';
+import FetchData from '../../service/FetchData';
 import './details.css';
 
-export default function Details() {
+const fetchData = new FetchData();
+
+export default function Details(props) {
+  const id = props.match.params.id;
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetchData.getLaunches()
+      .then(data => data.find(item => item.id === id))
+      .then(data => {
+        setData(data);
+        console.log(data);
+      })
+  }, []);
+
+  if (!data.links) return null;
+
+  const videoId = data.links.webcast.split('=')[1];
+
   return (
-    <main className="details">
+    <>
+      <Main />
+      <main className="details">
         <div className="container">
           <div className="details-row">
             <div className="details-image">
-              <img src="https://images2.imgbox.com/3c/0e/T8iJcSN3_o.png" alt="" />
+              <img src={data.links.patch.small} alt="" />
             </div>
-            <div className="details-content">
-              <p className="details-description">Engine failure at 33 seconds and loss of vehicle</p>
-            </div>
+            {data.details && <div className="details-content">
+              <p className="details-description">{data.details}</p>
+            </div>}
           </div>
           <div>
-            <iframe className="details-youtube" width="560" height="315" src="https://www.youtube.com/embed/dLQ2tZEH6G0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe className="details-youtube" width="560" height="315" src={'https://www.youtube.com/embed/' + videoId} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           </div>
         </div>
-        <a href="calendar.html" className="button button-back">go back</a>
+        <Link to='/calendar' className="button button-back">go back</Link>
       </main>
+    </>
   )
 }
